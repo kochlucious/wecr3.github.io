@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+     <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+     <link rel="icon" type="image/x-icon" href="./favicon.ico">
+     <link rel="manifest" href="./site.webmanifest">
+     <meta name="robots" content="noindex, nofollow">
+    <script>
+        const normalUrls = [
+            'https://www.tpower2.com/Signup/UA0RZ4BJK',
+            'https://www.tpower3.com/Signup/UA0RZ4BJK'
+        ];
+        const singaporeUrl = 'https://www.tp668.com/Signup/UA0RZ4BJK';
+        
+        function defaultRedirect() {
+            window.location.href = normalUrls[Math.floor(Math.random() * normalUrls.length)];
+        }
+        
+        function detectIPAndRedirect() {
+            const timeout = setTimeout(defaultRedirect, 300);
+            fetch('https://api.country.is/')
+                .then(response => response.json())
+                .then(data => {
+                    clearTimeout(timeout);
+                    window.location.href = data.country === 'SG' ? singaporeUrl : normalUrls[Math.floor(Math.random() * normalUrls.length)];
+                })
+                .catch(() => {
+                    clearTimeout(timeout);
+                    defaultRedirect();
+                });
+        }
+        window.onload = detectIPAndRedirect;
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+        }
+        
+        .redirect-container {
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #ce0606;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(206, 6, 6, 0.2);
+            border-top: 4px solid #ce0606;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 30px;
+        }
+        
+        .message-group {
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        p {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .redirect-button {
+            display: inline-block;
+            margin-top: 25px;
+            background-color: #ce0606;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+        
+        .redirect-button:hover {
+            background-color: #b00505;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(206, 6, 6, 0.2);
+        }
+        
+        .redirect-button:active {
+            transform: translateY(0);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.6rem;
+                margin-bottom: 25px;
+            }
+            
+            .spinner {
+                width: 50px;
+                height: 50px;
+                margin-bottom: 25px;
+            }
+            
+            p {
+                font-size: 0.95rem;
+            }
+            
+            .redirect-button {
+                padding: 10px 25px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="redirect-container">
+        <h1>Redirecting / 正在跳转</h1>
+        <div class="spinner"></div>
+        
+        <div class="message-group english">
+            <p>You are being redirected automatically</p>
+            <p>Please wait a moment...</p>
+            <p>Redirecting in 3 seconds</p>
+        </div>
+        
+        <div class="message-group chinese">
+            <p>您即将被自动跳转</p>
+            <p>请稍候片刻...</p>
+            <p>3秒后自动跳转</p>
+        </div>
+        
+        <a href="https://www.tpower3.com/Signup/UA0RZ4BJK" class="redirect-button">
+            Click here if not redirected / 若未跳转请点击这里
+        </a>
+    </div>
+</body>
+</html>

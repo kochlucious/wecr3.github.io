@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+Disallow: /login.html
+Sitemap: https://tpower3.fun/sitemap.xml
